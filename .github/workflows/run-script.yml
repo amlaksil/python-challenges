@@ -1,0 +1,26 @@
+name: Run Test Script
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependency
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install pytest
+
+      - name: Run the test script
+        run: |
+          python3 run_tests.py
